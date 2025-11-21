@@ -57,16 +57,16 @@ public class AuthService : IAuthService
         return await GenerateToken(user);
     }
 
-    private async Task<AuthResponse> GenerateToken(User user)
+    internal Task<AuthResponse> GenerateToken(User user)
     {
         var claims = new[]
         {
-            new Claim("sub", user.Id.ToString()),
-            new Claim("email", user.Email),
-            new Claim("name", user.FullName),
-            new Claim(ClaimTypes.Role, user.Role),
-            new Claim("jti", Guid.NewGuid().ToString())
-        };
+        new Claim("sub", user.Id.ToString()),
+        new Claim("email", user.Email),
+        new Claim("name", user.FullName),
+        new Claim(ClaimTypes.Role, user.Role),
+        new Claim("jti", Guid.NewGuid().ToString())
+    };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -78,7 +78,7 @@ public class AuthService : IAuthService
             expires: DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes),
             signingCredentials: creds);
 
-        return new AuthResponse
+        var response = new AuthResponse
         {
             Token = new JwtSecurityTokenHandler().WriteToken(token),
             FullName = user.FullName,
@@ -86,5 +86,7 @@ public class AuthService : IAuthService
             Role = user.Role,
             ExpiresAt = token.ValidTo
         };
+
+        return Task.FromResult(response);   // ← this makes it return Task<AuthResponse>
     }
 }
