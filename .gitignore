@@ -44,12 +44,13 @@ packages/
 *.snupkg
 
 # Secrets & environment files
-# ❗ FIXED: prevents appsettings.json from being uploaded ever again
 appsettings.json
 appsettings.*.json
-!appsettings.Development.json
 *.env
 secrets.json
+
+!appsettings.Development.json
+!appsettings.template.json
 
 # Migration backups
 MigrationBackup/
