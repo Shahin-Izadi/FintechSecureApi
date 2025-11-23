@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.EntityFrameworkCore.SqlServer;
 namespace Infrastructure.Persistence;
 
 public class AppDbContext : DbContext
@@ -42,8 +42,15 @@ public class AppDbContext : DbContext
             .HasOne(t => t.ToAccount)
             .WithMany()
             .HasForeignKey(t => t.ToAccountId)
-            .OnDelete(DeleteBehavior.SetNull)
+            .OnDelete(DeleteBehavior.NoAction)
             .IsRequired(false);
+        modelBuilder.Entity<Account>()
+            .Property(a => a.Balance)
+            .HasColumnType("decimal(18,2)");
+
+        modelBuilder.Entity<Transaction>()
+            .Property(t => t.Amount)
+            .HasColumnType("decimal(18,2)");
 
         base.OnModelCreating(modelBuilder);
     }
