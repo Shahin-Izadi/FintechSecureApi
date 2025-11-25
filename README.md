@@ -1,92 +1,170 @@
-\# FintechSecureApi – .NET 8 Clean Architecture Banking API
+\# FintechSecureApi
+
+\### A production-ready banking backend built with .NET 8 Clean Architecture
 
 
 
-\*\*Live Demo:\*\* https://fintechsecureapi.azurewebsites.net  
+!\[.NET 8](https://img.shields.io/badge/.NET-8.0-5C2D91?logo=.net\&logoColor=white)
 
-(Open the link → full interactive Swagger UI ready)
+!\[C#](https://img.shields.io/badge/Language-C%23-blue)
 
+!\[JWT Auth](https://img.shields.io/badge/Auth-JWT-000000?logo=json-web-tokens)
 
+!\[Entity Framework Core](https://img.shields.io/badge/ORM-EF%20Core%208-512BD4)
 
-A complete , production-ready banking backend :
+!\[SQL Server](https://img.shields.io/badge/Database-SQL%20Server-CC2927?logo=microsoft-sql-server)
 
+!\[Azure](https://img.shields.io/badge/Azure-0078D4?logo=microsoft-azure\&logoColor=white)
 
+!\[Swagger](https://img.shields.io/badge/Docs-Swagger-brightgreen)
 
-\- Clean Architecture (Domain → Application → Infrastructure → API)
-
-\- JWT Authentication + Registration/Login
-
-\- Role-based authorization (User / Admin)
-
-\- Real banking logic:
-
-&nbsp; - Open multiple accounts
-
-&nbsp; - Deposit, withdrawal, transfer (with overdraft protection)
-
-&nbsp; - Full transaction history
-
-&nbsp; - Admin dashboard – see everything in the system
-
-\- Entity Framework Core + Azure SQL Database (real production DB)
-
-\- Swagger with green "Authorize" button
-
-\- Deployed \& running 24/7 on Azure App Service
+!\[License](https://img.shields.io/badge/License-MIT-yellow)
 
 
 
-
-
-\## How to run locally
-
-
-
-1\. Clone the repo
-
-&nbsp;  ```bash
-
-&nbsp;  git clone https://github.com/yourusername/FintechSecureApi.git
-
-&nbsp;  cd FintechSecureApi/src/Api
+\*\*Live Demo:\*\* https://fintechsecureapi.azurewebsites.net (Open → interactive Swagger UI)
 
 
 
-Add your own appsettings.jsonBash
+A complete, production-ready banking backend that allows users to register, log in, open accounts, perform transactions (deposit, withdraw, transfer with overdraft protection), view history, and includes admin features – all built with Clean Architecture, JWT authentication, and deployed to Azure.
 
 
 
-Edit the file and fill in:
+\## Features
 
-Your Azure SQL connection string (or local SQL Server/SQLite)
+\- User registration \& login with JWT Bearer authentication
 
-A strong JWT Secret (at least 32 characters)
+\- Role-based authorization (User/Admin)
 
-And run the proper migrations . There is more explaining in the youtube 
+\- Account management: Create and retrieve accounts
 
-video from Teddy Smith https://youtu.be/SIQhe-yt3mA?si=xFzKLm-tHP2DW5jl
-I recommend watching his whole course for more indepth learning material 
+\- Transaction operations: Deposit, withdrawal, transfer (with business logic like overdraft protection)
 
-Tech Stack
+\- Full transaction history for users
 
+\- Admin dashboard endpoints: View all users, accounts, and transactions
 
+\- Integration with Azure SQL Database for production storage
 
-.NET 8
+\- In-memory database option for local development
 
-Clean Architecture
+\- Swagger / OpenAPI documentation with authorization support
 
-EF Core 8 + SQL Server
-
-JWT Bearer Authentication
-
-Swagger / OpenAPI
-
-Azure App Service + Azure SQL
+\- Entity Framework Core Code-First migrations
 
 
 
-Built in a week – fully working – production grade
+\## Project Structure
 
-you can add me on linkedin https://www.linkedin.com/in/shahin-izadi/
+FintechSecureApi/  
 
+├── .github/             # GitHub workflows  
+
+├── src/  
+
+│   ├── Api/             # Presentation layer: Controllers, Program.cs, appsettings, Swagger config  
+
+│   ├── Application/     # Application layer: MediatR commands/queries, DTOs, Validators, Mappers  
+
+│   ├── Domain/          # Domain layer: Entities (User, Account, Transaction), Interfaces  
+
+│   ├── Infrastructure/  # Infrastructure layer: Repositories, DbContext, Services (e.g., TokenService)  
+
+│   └── Tests.Unit/      # Unit tests for application logic  
+
+├── .gitignore  
+
+├── FintechSecureApi.sln  
+
+├── README.md  
+
+└── tree.txt  
+
+
+
+\## API Endpoints (Swagger UI → `/swagger`)
+
+
+
+| Method | Endpoint                              | Description                        | Auth   |
+
+|--------|---------------------------------------|------------------------------------|--------|
+
+| POST   | `/api/auth/register`                  | Register a new user                | –      |
+
+| POST   | `/api/auth/login`                     | Login and get authentication token | –      |
+
+| POST   | `/api/Accounts`                       | Create a new account               | Yes    |
+
+| GET    | `/api/Accounts`                       | Retrieve all accounts              | Yes    |
+
+| POST   | `/api/Transactions`                   | Create a new transaction           | Yes    |
+
+| GET    | `/api/Transactions/my`                | Retrieve current user's transactions | Yes  |
+
+| GET    | `/api/admin/users`                    | Retrieve users (admin)             | Yes (Admin) |
+
+| GET    | `/api/admin/accounts`                 | Retrieve accounts (admin)          | Yes (Admin) |
+
+| GET    | `/api/admin/transactions`             | Retrieve transactions (admin)      | Yes (Admin) |
+
+
+
+\## Tech Stack
+
+\- ASP.NET Core 8 Web API
+
+\- Entity Framework Core 8 (Code First)
+
+\- SQL Server / In-Memory DB (easy to switch)
+
+\- JWT Authentication
+
+\- MediatR for CQRS
+
+\- FluentValidation
+
+\- Swashbuckle (Swagger)
+
+\- Azure App Service + Azure SQL Database
+
+
+
+\## How to Run Locally
+
+1\. Clone the repo  
+
+&nbsp;  ```bash  
+
+&nbsp;  git clone https://github.com/yourusername/FintechSecureApi.git  
+
+&nbsp;  cd FintechSecureApi/src/Api  
+
+
+2. Add your own appsettings.json with:
+
+&nbsp;    Azure SQL connection string (or local SQL Server/In-Memory)
+
+&nbsp;    JWT Secret (at least 32 characters)
+3.Run migrations: dotnet ef migrations add Initial then dotnet ef database update
+
+&nbsp;   Run the app: dotnet run
+
+&nbsp;   Open Swagger at https://localhost:port/swagger
+
+
+
+For more details, watch Teddy Smith's YouTube course: https://youtu.be/SIQhe-yt3mA?si=xFzKLm-tHP2DW5jl
+
+
+
+Credit
+
+This project was built by following Teddy Smith’s excellent .NET 8 Clean Architecture tutorial series on YouTube.
+
+
+
+License
+
+MIT © \[Shahin Izadi] – happy to connect on LinkedIn: https://www.linkedin.com/in/shahin-izadi/ – feel free to star if you like it!
 
