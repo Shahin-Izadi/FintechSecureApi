@@ -4,21 +4,14 @@
 
 
 
-!\[.NET 8](https://img.shields.io/badge/.NET-8.0-5C2D91?logo=.net\&logoColor=white)
-
-!\[C#](https://img.shields.io/badge/Language-C%23-blue)
-
-!\[JWT Auth](https://img.shields.io/badge/Auth-JWT-000000?logo=json-web-tokens)
-
-!\[Entity Framework Core](https://img.shields.io/badge/ORM-EF%20Core%208-512BD4)
-
-!\[SQL Server](https://img.shields.io/badge/Database-SQL%20Server-CC2927?logo=microsoft-sql-server)
-
-!\[Azure](https://img.shields.io/badge/Azure-0078D4?logo=microsoft-azure\&logoColor=white)
-
-!\[Swagger](https://img.shields.io/badge/Docs-Swagger-brightgreen)
-
-!\[License](https://img.shields.io/badge/License-MIT-yellow)
+![.NET 8](https://img.shields.io/badge/.NET-8.0-5C2D91?logo=.net&logoColor=white)
+![C#](https://img.shields.io/badge/Language-C%23-blue)
+![JWT Auth](https://img.shields.io/badge/Auth-JWT-000000?logo=json-web-tokens)
+![Entity Framework Core](https://img.shields.io/badge/ORM-EF%20Core%208-512BD4)
+![SQL Server](https://img.shields.io/badge/Database-SQL%20Server-CC2927?logo=microsoft-sql-server)
+![Azure](https://img.shields.io/badge/Azure-0078D4?logo=microsoft-azure&logoColor=white)
+![Swagger](https://img.shields.io/badge/Docs-Swagger-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
 
 
